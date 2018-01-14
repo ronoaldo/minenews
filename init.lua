@@ -6,14 +6,14 @@ minetest.register_privilege("news_bypass", {
 -- create formspec from text file
 local function get_formspec()
 	local news_file = io.open(minetest.get_worldpath().."/news.txt", "r")
-	local news_fs = 'size[12,8.5]'..
-		"button_exit[-0.05,8.05;2,1;exit;Close]"
+	local news_fs = 'size[12,8.25]'..
+		"button_exit[-0.05,7.8;2,1;exit;Close]"
 	if news_file then
 		local news = news_file:read("*a")
 		news_file:close()
-		news_fs = news_fs.."textarea[0.25,0.25;12,9;news;;"..news.."]"
+		news_fs = news_fs.."textarea[0.25,0;12.1,9;news;;"..news.."]"
 	else
-		news_fs = news_fs.."textarea[0.25,0.25;12,9;news;;No current news.]"
+		news_fs = news_fs.."textarea[0.25,0;12.1,9;news;;No current news.]"
 	end
 	return news_fs
 end
