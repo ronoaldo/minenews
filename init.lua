@@ -11,7 +11,7 @@ local function get_formspec()
 	if news_file then
 		local news = news_file:read("*a")
 		news_file:close()
-		news_fs = news_fs.."textarea[0.25,0;12.1,9;news;;"..news.."]"
+		news_fs = news_fs.."textarea[0.25,0;12.1,9;news;;"..minetest.formspec_escape(news).."]"
 	else
 		news_fs = news_fs.."textarea[0.25,0;12.1,9;news;;No current news.]"
 	end
