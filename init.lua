@@ -1,6 +1,6 @@
 -- Register bypass priv
 minetest.register_privilege("news_bypass", {
-	description = "Skip the news.",
+	description = "Skip the news display on login.",
 	give_to_singleplayer = false
 })
 

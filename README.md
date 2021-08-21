@@ -1,6 +1,6 @@
 # minenews
 
-Localized Simple server news for [Minetest](https://www.minetest.net/) servers.
+Localized and simple server news for [Minetest](https://www.minetest.net/) servers.
 Original version by Shara RedCat, forked and improved by Ronoaldo.
 
 This displays a news formspec when the player joins. To set the news text
