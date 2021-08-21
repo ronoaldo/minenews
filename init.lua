@@ -24,14 +24,13 @@ local function get_formspec(name)
 		"Displaying news to player "..name.." in "..lang.." from file "..news_filename)
 	-- Display the formspec for the server news
 	local news_fs = 'size[12,8.25]'..
-		"style_type[textarea;font=mono]"..
 		"button_exit[-0.05,7.8;2,0.8;exit;OK]"
 	if news_file then
 		local news = news_file:read("*a")
 		news_file:close()
-		news_fs = news_fs.."textarea[0.25,0;12.1,9;;;"..minetest.formspec_escape(news).."]"
+		news_fs = news_fs.."hypertext[0.25,0;12.1,9;news;"..minetest.formspec_escape(news).."]"
 	else
-		news_fs = news_fs.."textarea[0.25,0;12.1,9;;;No current news.]"
+		news_fs = news_fs.."hypertext[0.25,0;12.1,9;news;<b>No current news.</b>]"
 	end
 	minetest.log("verbose", "news_fs => "..news_fs)
 	return news_fs
