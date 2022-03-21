@@ -5,6 +5,12 @@ minetest.register_privilege("news_bypass", {
 })
 
 -- Create formspec from text file
+-- formspec_version[5]
+-- size[20,16]
+-- button_exit[16.8,14.8;3,1;close;OK]
+-- image[0.2,14.8;1,1;minenews_discord]
+-- field[1.3,14.8;15.3,1;discord_invite;;https://]
+-- textarea[0.2,0.3;19.6,14.2;news;;]
 local function get_formspec(name)
 	-- Lookup player language preference
 	local player_info = minetest.get_player_information(name)
@@ -12,27 +18,34 @@ local function get_formspec(name)
 	if lang == "" then
 		lang = "en"
 	end
-	-- Lookup news file to display, trying by language first, with a default news.txt
+	-- Lookup news file to display, trying by language first, with a default news.md
 	-- fallback.
-	local news_filename = minetest.get_worldpath().."/news_"..lang..".txt", "r"
+	local news_filename = minetest.get_worldpath().."/news_"..lang..".md", "r"
 	local news_file = io.open(news_filename, "r")
 	if not news_file then
-		news_filename = minetest.get_worldpath().."/news.txt", "r"
+		news_filename = minetest.get_worldpath().."/news.md", "r"
 		news_file = io.open(news_filename, "r")
 	end
-	minetest.log("verbose",
-		"Displaying news to player "..name.." in "..lang.." from file "..news_filename)
+	minetest.log("verbose", "Displaying news to player "..name.." in "..lang.." from file "..news_filename)
+	
 	-- Display the formspec for the server news
-	local news_fs = 'size[12,8.25]'..
-		"button_exit[-0.05,7.8;2,0.8;exit;OK]"
-	if news_file then
-		local news = news_file:read("*a")
-		news_file:close()
-		news_fs = news_fs.."hypertext[0.25,0;12.1,9;news;"..minetest.formspec_escape(news).."]"
-	else
-		news_fs = news_fs.."hypertext[0.25,0;12.1,9;news;<b>No current news.</b>]"
+	local news_fs = "formspec_version[5]"..
+		"size[20,16]"..
+		"button_exit[16.8,14.8;3,1;close;OK]"
+	
+	local discord_link = minetest.settings:get("minenews.discord_invite") or ""
+	if discord_link ~= "" then
+		news_fs = news_fs..
+			"image[0.2,14.8;1,1;minenews_discord.png]"..
+			"field[1.3,14.8;15.3,1;discord_invite;;"..discord_link.."]"
 	end
-	minetest.log("verbose", "news_fs => "..news_fs)
+
+	local news = "No news for today."
+	if news_file then
+		news = news_file:read("*a")
+		news_file:close()
+	end
+	news_fs = news_fs..md2f.md2f(0.2, 0.5, 19.6, 13.7, news)
 	return news_fs
 end
 
