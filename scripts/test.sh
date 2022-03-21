@@ -7,6 +7,11 @@ export LOGS=$(mktemp "$WORLD/debug.txt")
 
 rm -rvf $WORLD
 mkdir -p $WORLD/worldmods
-cp -r scripts/{world.mt,minetest.conf,news*} $WORLD/
+cp -r scripts/world/* $WORLD/
 cp -r ./ $WORLD/worldmods/minenews
+
+if [ x"$1" = x"pt" ]; then
+    echo 'language = pt_BR' >> $WORLD/minetest.conf
+fi
+
 exec minetest --verbose --config $WORLD/minetest.conf --logfile $LOGS --world $WORLD --go
