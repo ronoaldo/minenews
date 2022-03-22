@@ -1,19 +1,22 @@
 # minenews
 
-Localized and simple server news for [Minetest](https://www.minetest.net/) servers.
-Original version by Shara RedCat, forked and improved by Ronoaldo.
+Localized and simple server news for Minetest servers. Original version by Shara
+RedCat, forked and improved by Ronoaldo.
 
-This displays a news formspec when the player joins. To set the news text
-make a file named `news_*lang_code*.txt` in your world directory, falling back
-to a `news.txt` file.
+This mod displays a formspec when the player joins. To set the news text to
+display, make a file named news_*lang_code*.md in your world directory for
+each locale you plan to support, falling back to a news.md file if no localized
+version is found.
 
-The contents of this file will display as the news. When changing the contents
-of the file, there is no need to restart the server for it to update in game.
+The contents of this file will be displayed to the player, interpreted as
+Markdown. When changing the contents of the file, there is no need to restart
+the server for it to update in game so you can also test quickly the display.
 
-Players can also type `/news` to display the formspec at any time.
+Players can also type /news to display the formspec at any time.
 
-Players with the news\_bypass privilege will not see the formspec when they
-sign in, but can still use the /news command.
+Players with the news_bypass privilege will not see the formspec when they sign
+in, but can still use the /news command.
+
 
 ## Screenshots
 
