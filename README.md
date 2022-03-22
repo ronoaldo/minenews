@@ -19,3 +19,7 @@ sign in, but can still use the /news command.
 # License
 
 Code for this mod is released under MIT (https://opensource.org/licenses/MIT).
+
+Images for this mod are released under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) (https://creativecommons.org/licenses/by-sa/4.0/)
+
+Discord logo is Copyright (C) Discord.
