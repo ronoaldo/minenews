@@ -11,7 +11,7 @@ cp -r scripts/world/* $WORLD/
 cp -r ./ $WORLD/worldmods/minenews
 
 if [ x"$1" = x"pt" ]; then
-    echo 'language = pt_BR' >> $WORLD/minetest.conf
+    echo -e '\nlanguage = pt_BR' >> $WORLD/minetest.conf
 fi
 
-exec minetest --verbose --config $WORLD/minetest.conf --logfile $LOGS --world $WORLD --go
+exec minetest --verbose --config $WORLD/minetest.conf --world $WORLD --go
