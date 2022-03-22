@@ -38,7 +38,7 @@ local function get_formspec(name)
 	
 	if discord_link ~= "" then
 		news_fs = news_fs..
-			"image[0.2,14.8;1,1;minenews_icon_clyde_white.png]"..
+			"image[0.2,14.8;1,1;minenews_icon_chat_white.png]"..
 			"field[1.3,14.8;15.3,1;discord_invite;;"..discord_link.."]"
 	end
 
