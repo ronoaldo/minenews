@@ -39,7 +39,9 @@ end
 -- Show news formspec on player join, unless player has bypass priv
 minetest.register_on_joinplayer(function (player)
 	local name = player:get_player_name()
-	if minetest.get_player_privs(name).news_bypass then
+	if player:get_hp() <= 0 then
+		return
+	elseif minetest.get_player_privs(name).news_bypass then
 		return
 	else
 		minetest.show_formspec(name, "news", get_formspec(name))
