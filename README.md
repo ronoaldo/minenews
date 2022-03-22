@@ -15,7 +15,20 @@ Players can also type `/news` to display the formspec at any time.
 Players with the news\_bypass privilege will not see the formspec when they
 sign in, but can still use the /news command.
 
+## Screenshots
+
+Sample news dialog in English:
+
+![News in English](./img/news_en.png)
+
+And a translated news file shown for the user if the language is set to `pt_BR`:
+
+![News in Portuguese](./img/news_pt.png)
 
 # License
 
 Code for this mod is released under MIT (https://opensource.org/licenses/MIT).
+
+Images for this mod are released under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) (https://creativecommons.org/licenses/by-sa/4.0/)
+
+Discord logo is Copyright (C) Discord.
