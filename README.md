@@ -1,5 +1,7 @@
 # minenews
 
+![Localized server news for Minetest](img/open-graph.png)
+
 Localized and simple server news for Minetest servers. Original version by Shara
 RedCat, forked and improved by Ronoaldo.
 
