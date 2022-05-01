@@ -1,9 +1,11 @@
 # minenews
 
-![Localized server news for Minetest](img/open-graph.png)
-
 Localized and simple server news for Minetest servers. Original version by Shara
 RedCat, forked and improved by Ronoaldo.
+
+[![ContentDB](https://content.minetest.net/packages/ronoaldo/minenews/shields/downloads/)](https://content.minetest.net/packages/ronoaldo/minenews/)
+
+![Localized server news for Minetest](img/open-graph.png)
 
 This mod displays a formspec when the player joins. To set the news text to
 display, make a file named news_*lang_code*.md in your world directory for each
