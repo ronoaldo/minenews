@@ -14,14 +14,14 @@ local function get_formspec(name)
 	end
 	-- Lookup news file to display, trying by language first, with a default news.md
 	-- fallback.
-	local news_filename = minetest.get_worldpath().."/news_"..lang..".md", "r"
+	local news_filename = minetest.get_worldpath().."/news_"..lang..".md"
 	local news_file = io.open(news_filename, "r")
 	if not news_file then
-		news_filename = minetest.get_worldpath().."/news.md", "r"
+		news_filename = minetest.get_worldpath().."/news.md"
 		news_file = io.open(news_filename, "r")
 	end
 	minetest.log("verbose", "Displaying news to player "..name.." in "..lang.." from file "..news_filename)
-	
+
 	-- Settings
 	local fg_color = minetest.settings:get("minenews.fg_color") or "#AFAFAF"
 	local bg_color = minetest.settings:get("minenews.bg_color") or "#34343400"
@@ -31,15 +31,15 @@ local function get_formspec(name)
 
 	-- Display the formspec for the server news
 	local news_fs = "formspec_version[5]"..
-		"size[20,16]"..
+		"size[24,16]"..
 		"noprepend[]"..
 		"bgcolor["..bg_color.."]"..
-		"button_exit[16.8,14.8;3,1;close;OK]"
-	
+		"button_exit[20.8,14.8;3,1;close;OK]"
+
 	if discord_link ~= "" then
 		news_fs = news_fs..
 			"image[0.2,14.8;1,1;minenews_icon_chat_white.png]"..
-			"field[1.3,14.8;15.3,1;discord_invite;;"..discord_link.."]"
+			"field[1.3,14.8;19.2,1;discord_invite;;"..discord_link.."]"
 	end
 
 	local news = "No news for today."
@@ -51,12 +51,12 @@ local function get_formspec(name)
 	-- Render the file as markdown
 	local settings = {
 		background_color = bg_color,
-		font_color = "#FFF",
+		font_color = fg_color,
 		heading_1_color = header_color,
 		heading_2_color = header_color,
 		heading_3_color = header_color,
 		heading_4_color = header_color,
-		heading_5_color = header_color, 
+		heading_5_color = header_color,
 		heading_6_color = header_color,
 		heading_1_size = "26",
 		heading_2_size = "22",
@@ -69,7 +69,7 @@ local function get_formspec(name)
 		mono_color = mono_color,
 		block_quote_color = mono_color,
 	}
-	news_fs = news_fs..md2f.md2f(0.2, 0.5, 19.6, 13.7, news, "news", settings)
+	news_fs = news_fs..md2f.md2f(0.2, 0.5, 23.6, 13.8, news, "news", settings)
 	minetest.log("verbose", "Formspec => "..news_fs)
 	return news_fs
 end
@@ -90,7 +90,6 @@ end)
 minetest.register_chatcommand("news", {
 	description = "Shows server news to the player",
 	func = function (name)
-		local player = minetest.get_player_by_name(name)
 		minetest.show_formspec(name, "news", get_formspec(name))
 	end
 })
