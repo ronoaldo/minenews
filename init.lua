@@ -75,7 +75,7 @@ local function get_formspec(name)
 end
 
 -- Show news formspec on player join, unless player has bypass priv
-minetest.register_on_joinplayer(function (player)
+local function on_joinplayer(player)
 	local name = player:get_player_name()
 	if player:get_hp() <= 0 then
 		return
@@ -84,7 +84,9 @@ minetest.register_on_joinplayer(function (player)
 	else
 		minetest.show_formspec(name, "news", get_formspec(name))
 	end
-end)
+end
+-- Register callback
+minetest.register_on_joinplayer(on_joinplayer)
 
 -- Command to display server news at any time
 minetest.register_chatcommand("news", {
@@ -93,3 +95,7 @@ minetest.register_chatcommand("news", {
 		minetest.show_formspec(name, "news", get_formspec(name))
 	end
 })
+
+-- Exported API
+minenews = {}
+minenews.on_joinplayer = on_joinplayer
